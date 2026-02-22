@@ -1,5 +1,7 @@
 package main
 
 func main(){
-	playTodo()
+	// playTodo()
+	app := NewTodoApp()
+	app.Run()
 }
