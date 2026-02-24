@@ -15,7 +15,7 @@ func maymemath(a int, b int) (int, int) {
 func main(){
 	a := [3]int{1,2,3}
 	c := &a;
-	c[0] = 300
+	c[0] = 300;
 
 	fmt.Println(a) // [100 2 3]
 	b := a
