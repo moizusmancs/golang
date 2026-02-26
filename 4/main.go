@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/moizusmancs/students-api/controllers"
 )
 
 func main() {
@@ -49,6 +50,9 @@ func main() {
 		})
 
 	})
+
+  notesController := controllers.NotesController{}
+  notesController.InitNotesControllerRoutes(r)
 
 	if err := r.Run(); err != nil {
 		log.Fatalf("failed to run server: %v", err)
