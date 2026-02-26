@@ -7,10 +7,17 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/moizusmancs/students-api/controllers"
+  "github.com/moizusmancs/students-api/internal/database"
+
 )
 
 func main() {
 	r := gin.Default()
+  startDb := internal.InitPostgre()
+
+  if startDb == nil{
+    // handle the error
+  }
 
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
