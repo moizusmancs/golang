@@ -8,7 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/moizusmancs/students-api/controllers"
   "github.com/moizusmancs/students-api/internal/database"
-
+  "github.com/moizusmancs/students-api/services"
 )
 
 func main() {
@@ -18,6 +18,9 @@ func main() {
   if startDb == nil{
     // handle the error
   }
+
+  notesService := &services.NoteService{}
+  notesService.InitService(startDb)
 
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
@@ -59,7 +62,7 @@ func main() {
 	})
 
   notesController := controllers.NotesController{}
-  notesController.InitNotesControllerRoutes(r)
+  notesController.InitNotesControllerRoutes(r, *notesService)
 
 	if err := r.Run(); err != nil {
 		log.Fatalf("failed to run server: %v", err)
